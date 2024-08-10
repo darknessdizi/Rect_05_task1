@@ -1,59 +1,47 @@
 import './App.css';
-import { useState } from 'react';
-import { FieldInput } from './components/FieldInput/FieldInput';
-import { FieldImages } from './components/FieldImages/FieldImages';
-import { MyTarget } from './components/modal/modal';
+import { Card } from './components/Card/Card';
+import { ImgItem } from './components/ImgItem/ImgItem';
 
-type TList = string[];
+const white = `
+  Белый цвет имеет множество значений:
+  невинность, справедливость, божественность, свежесть и лёгкость,
+  цвет мира и непорочности, открытости и благочестия.
+`;
+
+const black = `
+  Чёрный цвет в психологии и культуре имеет неоднозначное значение.
+  С одной стороны, он вызывает ассоциации с роскошью и престижем. Это официальный и классический цвет: чёрные лимузины — это богатство и власть, чёрные смокинги — сообщество избранных и статус. Благодаря этому он может казаться сильным, ассоциироваться со смелостью и мощью, создавать ощущение превосходства.
+  С другой стороны, это знак тьмы и ночи, символ страха и тоски, уныния, одиночества, скорби. На Западе чёрный обычно ассоциируется с трауром и утратой, горем. Чёрную одежду носят на похоронах и поминальных службах — эта традиция появилась ещё в древнеримские времена. Поэтому чёрный часто воспринимают как тяжёлый и мрачный и считают, что он может угнетающе действовать на настроение.
+`;
+
+const red = `
+  Красный цвет ассоциируется с любовью и опасностью, с агрессией и энергией, с властью и страхом.
+  Этот цвет используют, чтобы поднять настроение, мотивировать к действиям или привлечь внимание. Также он вызывает огромный спектр эмоций — от приятных до пугающих.
+  Например, когда речь идёт о любви, то вспоминают День всех влюблённых и красные валентинки. Уверенная в себе женщина наденет красное платье и привлечёт к себе внимание. Если говорить о гоночных автомобилях, то в голове рисуется картинка спорткара красного цвета.
+  Чтобы цвет вызывал нужные эмоции, используют разные его тона. Например, светлый оттенок мягче и нежнее, а тёмный — более эмоциональный и агрессивный.
+`;
 
 function App() {
-  const [list, setList] = useState<TList>([]);
-
-  const handleSelect = async (evt: React.ChangeEvent<HTMLInputElement>) => {
-    // В поле input выбрали фото и нажали открыть
-    const { files } = evt.target;
-    if (files) {
-      const arrayFiles = [...files];
-      const urls = await Promise.all(arrayFiles.map(o => fileToDataUrl(o)));
-      setList([
-        ...list,
-        ...urls,
-      ]);
-      evt.target.value = '';
-    }
-  }
-
-  const fileToDataUrl = (file: File) => {
-    return new Promise<string>((resolve, reject) => {
-      const fileReader = new FileReader();
-    
-      fileReader.addEventListener('load', (evt: ProgressEvent<FileReader>) => {
-          resolve((evt.currentTarget as unknown as MyTarget).result);
-      });
-      
-      fileReader.addEventListener('error', (evt) => {
-        reject(new Error((evt.currentTarget as unknown as MyTarget).error));
-      });
-      
-      fileReader.readAsDataURL(file);
-    });
-  }
-
-  const clickCross = (url: string) => {
-    // Удаление изображения (нажатие на крестик)
-    const index = list.indexOf(url);
-    const newArray = list.slice();
-    newArray.splice(index, 1);
-    setList([
-      ...newArray,
-    ]);
-  }
 
   return (
-    <div className='content__task'>
-      <FieldInput inviteFiles={handleSelect} />
-      <FieldImages array={list} callback={clickCross}/>
+    <div  className="content">
+
+      <Card title="White card" body={white} >
+        <ImgItem info={{path: "./1.jpg", name: "Liza"}}/>
+      </Card>
+
+      <Card title="Black card" body={black} btnTitle="Перейти" >
+        <ImgItem info={{path: "./3.jpg", name: "Nika"}}/>
+      </Card>
+
+      <Card title="Red card" body={red} btnTitle="Добавить" >
+        <ImgItem info={{path: "./6.jpg", name: "Dizi"}}/>
+      </Card>
+
+      <Card title="Empty card" body="Карточка не содержит изображения." />
+
     </div>
+
   )
 }
 
