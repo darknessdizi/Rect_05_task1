@@ -3,7 +3,7 @@ interface ICardProps {
   body: string,
   link?: string,
   btnTitle?: string,
-  children: React.ReactNode,
+  children?: React.ReactNode,
 }
 
 export const Card = (props: ICardProps) => {

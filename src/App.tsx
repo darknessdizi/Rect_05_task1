@@ -27,15 +27,15 @@ function App() {
     <div  className="content">
 
       <Card title="White card" body={white} >
-        <ImgItem info={{path: "./1.jpg", name: "Liza"}}/>
+        <ImgItem info={{path: "./1.jpg", alt: "Liza"}}/>
       </Card>
 
       <Card title="Black card" body={black} btnTitle="Перейти" >
-        <ImgItem info={{path: "./3.jpg", name: "Nika"}}/>
+        <ImgItem info={{path: "./3.jpg", alt: "Nika"}}/>
       </Card>
 
       <Card title="Red card" body={red} btnTitle="Добавить" >
-        <ImgItem info={{path: "./6.jpg", name: "Dizi"}}/>
+        <ImgItem info={{path: "./6.jpg", alt: "Dizi"}}/>
       </Card>
 
       <Card title="Empty card" body="Карточка не содержит изображения." />
