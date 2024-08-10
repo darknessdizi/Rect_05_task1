@@ -1,6 +1,10 @@
 Карточки
 ===
 
+[![Build status](https://ci.appveyor.com/api/projects/status/cm1uk82w5n7i5u52?svg=true)](https://ci.appveyor.com/project/darknessdizi/rect-05-task1)
+
+*Ссылка на страницу:* https://darknessdizi.github.io/Rect_05_task1/
+
 Вам необходимо реализовать компонент карточек, позволяющий использовать себя следующим образом:
 
 ![](./assets/card1.png)
